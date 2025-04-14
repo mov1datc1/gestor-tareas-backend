@@ -10,10 +10,17 @@ router.get("/", async (req, res) => {
 
 // Crear nuevo proyecto
 router.post("/", async (req, res) => {
-  const newProject = new Project(req.body);
-  await newProject.save();
-  res.json(newProject);
+  try {
+    const { name, owner } = req.body;
+    const newProject = new Project({ name, owner });
+    await newProject.save();
+    res.status(201).json(newProject);
+  } catch (error) {
+    console.error("Error al crear proyecto:", error);
+    res.status(500).json({ message: "Error al crear el proyecto", error });
+  }
 });
+
 
 // Actualizar un proyecto
 router.put("/:id", async (req, res) => {
