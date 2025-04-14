@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const ProjectSchema = new mongoose.Schema({
-  title: String,
+  name: String,  // Antes era "title"
   owner: String,
   status: {
     type: String,
