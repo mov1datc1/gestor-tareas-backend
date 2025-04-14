@@ -6,6 +6,9 @@ require("dotenv").config();
 
 const taskRoutes = require("./routes/tasks");
 const groupRoutes = require("./routes/groups");
+const projectRoutes = require("./routes/projects");
+
+
 
 const app = express();
 
@@ -14,6 +17,7 @@ app.use(express.json());
 
 app.use("/api/tasks", taskRoutes);
 app.use("/api/groups", groupRoutes);
+app.use("/api/projects", projectRoutes);
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
